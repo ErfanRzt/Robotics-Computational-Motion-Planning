@@ -5,7 +5,7 @@
 # Robotics: Computational Motion Planning
 ## Graph-Based Motion Planning
 ### Dijkstra
-<div style="text-align: center;">
+<div align="center">
   <img src=".\Figures\WEEK1\djkstra.gif" alt="djkstra" width="500"/>
 </div>
 
