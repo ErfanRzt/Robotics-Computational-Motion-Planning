@@ -125,17 +125,24 @@ In this assignment I developed a program to help guide the six link robot from o
 
 
 ## `WEEK 4`&nbsp; Artificial Potential Fields
-<div align="center">
-  <img src=".\Figures\WEEK4\configuration-space.jpg" alt="twolink-dijkstra-animate" width="500"/>
-</div>
+The planning methods described in the previous sections aim at capturing the global connectivity of the robot's free space into a condensed graph that is subsequently searched for a path. It treats the robot represented as a point in configuration space as a particle under the influence of an artificial potential field whose local variations are expected to reflect the "structure" of the free space. The potential function is typically (but not necessarily) defined over free space as the sum of an attractive potential pulling the robot toward the goal configuration and a repulsive potential pushing the robot away from the obstacles. 
 
-<div align="center">
-  <img src=".\Figures\WEEK4\artificial-potential-fields.gif" alt="twolink-dijkstra-animate" width="500"/>
-</div>
+Motion planning is performed in an iterative fashion. At each iteration, the artificial force being the gradient of the potential field, at the current configuration is regarded as the most promising direction of motion, and path generation proceeds along this direction by some increment.
 
-<div align="center">
-  <img src=".\Figures\WEEK4\quiver-plot.jpg" alt="twolink-dijkstra-animate" width="500"/>
-</div>
+### Assignment
+In this assignment I developed code to guide a robot from one location to another in a 2-dimensional configuration space using artificial potential fields.
+
+| <img src=".\Figures\WEEK4\configuration-space.jpg" alt="cspace-potential-field" width="500"/> |
+|:--:|
+| Problem Configuration Space |
+
+| <img src=".\Figures\WEEK4\artificial-potential-fields.gif" alt="potential-field-animation" width="500"/> |
+|:--:|
+| Artificial Potential Field |
+
+| <img src=".\Figures\WEEK4\quiver-plot.jpg" alt="potential-field-quiver" width="500"/> |
+|:--:|
+| Quiver Plot; a Gradient-Based Trajectory |
 
 
 ## Resources
