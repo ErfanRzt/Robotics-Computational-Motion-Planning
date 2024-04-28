@@ -83,7 +83,7 @@ This assignment splits into two parts: Triangle Intersection and Dijkstra on a T
   
 | <img src=".\Figures\WEEK2\dijkstratour.jpg" alt="twolink-dijkstra" width="500"/> |
 |:--:|
-| Dijkstra's Algorithm Output on a Torus |
+| <b>Dijkstra's Algorithm</b> Output on a Torus |
 
 </div>
 
@@ -96,9 +96,31 @@ This assignment splits into two parts: Triangle Intersection and Dijkstra on a T
 </div>
 
 
-## `WEEK 3`&nbsp; Probabilistic Road Map
+## `WEEK 3`&nbsp; Sample-Based Motion Planners
+
+The main idea is to avoid the explicit construction of object in configuration space, and instead conduct a search that probes the C-space with a sampling scheme. This probing is enabled by a collision detection module. This enables the development of planning algorithms that are independent of the particular geometric models.
+
+### Probabilistic Road Map
+
+The basic PRM algorithm first constructs a roadmap in a probabilistic way for a given workspace. The roadmap is represented by an undirected graph in which, the nodes are a set of robot configurations chosen by some method over free configuration space. Assume that the generation of configurations is done randomly from a uniform distribution. An edge corresponds to a collision-free path connecting configurations q1 and q2. These paths, which are computed by a local planner. In its simplest form, the local
+planner connects two configurations by the straight line in free space if such a line exists.
+
+A significant advantage of PRM based planners is that they can be applied to systems with lots of degrees of freedom. 
+
+It is also important to note that while these methods work well in practice, they are not strictly speaking complete. A complete path planning algorithm should be able to find a path if one exists and indicate failure if there isn't. With the PRM procedure, there can be situations where the algorithm fails to find a path even when one exists. This can happen if the sampling procedure doesn't generate the right set of samples.
+
+### Rapidly-Exploring Random Trees
+It is an incremental sampling and searching approach that yields good performance in practice without any parameter tuning. The idea is to incrementally construct a search tree that gradually improves the resolution but does not need to explicitly set any resolution parameters. In the limit, the tree densely covers the space. Thus, it has properties similar to space filling curves, but instead of one long path, there are shorter paths that are organized into a tree. A dense sequence of samples is used as a guide in the incremental construction of the tree. If this sequence is random, the resulting tree is called a rapidly exploring random tree (RRT).
+
+### Assignment
+In this assignment I developed a program to help guide the six link robot from one configuration to another while avoiding the objects in the workspace. The robot is comprised of six revolute links and its configuration can be specified with a vector (θ1; θ2; θ3; θ4; θ5; θ6) where each entry is an angle in degrees between 0 and 360. This code uses Probabilistic Roadmap planner that guides the robot safely from one point to another.
+
 <div align="center">
-  <img src=".\Figures\WEEK3\sixlink-prm.gif" alt="sixlink-prm" width="500"/>
+  
+| <img src=".\Figures\WEEK3\sixlink-prm.gif" alt="sixlink-prm" width="500"/> |
+|:--:|
+| <b>PRM</b> Algorithm for the Six Link Robot |
+
 </div>
 
 
