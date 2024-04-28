@@ -54,16 +54,45 @@ In this assignment, I worked on writing Matlab code to implement planning system
 
 
 ## `WEEK 2`&nbsp; Configuration Space
+
+### Configuration Space
+To creat motion plans for robots, we must be able to specify the position of the robot. More specifically, we must be able to give a specification of the location of every point on the robot, since we need to ensure that no point on the robot collides with an obstacle.
+
+The configuration of a robot system is a complete specification of the position of every point of that system. The configuration space, or C-space, of the robot system is the space of all possible configurations of the system.
+
+### Collision Detection
+Polygonal obstacles are convenient to work with because they provide an explicit description of the configuration space obstacles.
+Deciding whether the robot and the obstacle intersect is now a matter of determining whether any of the robot triangles overlap any of the obstacle triangles.
+
+Triangles are convex polygons. Thus, we can test whether two triangles intersect by checking all of the sides on both triangles and testing whether that side acts as a separating line where all of the points from one triangle lie on one side and all those from the other lie on the opposite side.
+
+### Assignment
+In this assignment I developed a program to help guide the two link robot arm from one configuration to another while avoiding the objects in the workspace. In this example the configuration of the robot is captured by the two joint angles, θ1 and θ2. 
+
+This assignment splits into two parts: Triangle Intersection and Dijkstra on a Torus. 
+
 <div align="center">
-  <img src=".\Figures\WEEK2\twolink-cspace-equal.jpg" alt="configuration-space" width="500"/>
+  
+| <img src=".\Figures\WEEK2\twolink-cspace-equal.jpg" alt="configuration-space" width="500"/> |
+|:--:| 
+| Two Link Robot and the Corresponding Configuration Space |
+
 </div>
 
 <div align="center">
-  <img src=".\Figures\WEEK2\dijkstratour.jpg" alt="twolink-dijkstra" width="500"/>
+  
+| <img src=".\Figures\WEEK2\dijkstratour.jpg" alt="twolink-dijkstra" width="500"/> |
+|:--:|
+| Dijkstra's Algorithm Output on a Torus |
+
 </div>
 
 <div align="center">
-  <img src=".\Figures\WEEK2\dijkstratour-animation.gif" alt="twolink-dijkstra-animate" width="500"/>
+  
+| <img src=".\Figures\WEEK2\dijkstratour-animation.gif" alt="twolink-dijkstra-animate" width="500"/> |
+|:--:|
+| Two Link Robot Navigation through Configuration Space |
+
 </div>
 
 
