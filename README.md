@@ -163,7 +163,7 @@ If you are interested in the topic of computational motion planning in robotics,
 
 ## Certificate
 <div align="center">
-  <img src=".\Figures\Erfan-Riazati-Certificate.png" alt="twolink-dijkstra-animate" width="750"/>
+  <img src=".\Figures\Erfan-Riazati-Certificate.png" alt="certificate" width="1080"/>
 </div>
 
 
