@@ -11,7 +11,7 @@ This repository showcases my progress in this course. However, I must adhere to 
 Nevertheless, I am more than willing to offer assistance and support to other students or enthusiasts privately. If you have any questions or need guidance, please don't hesitate to reach out to me. Additionally, I am particularly enthusiastic about collaborating on robotics systems, specifically motion planning problems and other topics covered in this course. Whether it's providing help or being part of a larger team, I would be thrilled to contribute to solving these challenges.
 
 ## Introduction
-Robotic systems typically include three components: a mechanism which is capable of exerting forces and torques on the environment, a perception system for sensing the world, and a decision and control system that modulates the robot's behavior to achieve the desired ends.  In this course, we will consider the problem of how a robot decides what to do to achieve its goals. This problem is often referred to as Motion Planning and it has been formulated in various ways to model different situations.  You will learn some of the most common approaches to addressing this problem including graph-based methods, randomized planners, and artificial potential fields.  Throughout the course, we will discuss the aspects of the problem that make planning challenging.
+Robotic systems typically include three components: a mechanism that is capable of exerting forces and torques on the environment, a perception system for sensing the world, and a decision and control system that modulates the robot's behavior to achieve the desired ends.  In this course, we will consider the problem of how a robot decides what to do to achieve its goals. This problem is often referred to as Motion Planning and it has been formulated in various ways to model different situations.  You will learn some of the most common approaches to addressing this problem including graph-based methods, randomized planners, and artificial potential fields.  Throughout the course, we will discuss the aspects of the problem that make planning challenging.
 
 ## Basic Problem
 The goal of defining a basic motion planning problem is to isolate some central issues and investigate them in depth before considering additional difficulties.
@@ -56,9 +56,9 @@ In this assignment, I worked on writing Matlab code to implement planning system
 ## `WEEK 2`&nbsp; Configuration Space
 
 ### Configuration Space
-To creat motion plans for robots, we must be able to specify the position of the robot. More specifically, we must be able to give a specification of the location of every point on the robot, since we need to ensure that no point on the robot collides with an obstacle.
+To create motion plans for robots, we must be able to specify the position of the robot. More specifically, we must be able to give a specification of the location of every point on the robot, since we need to ensure that no point on the robot collides with an obstacle.
 
-The configuration of a robot system is a complete specification of the position of every point of that system. The configuration space, or C-space, of the robot system is the space of all possible configurations of the system.
+The configuration of a robot system is a complete specification of the position of every point of that system. The configuration space, or C-space, of the robot system, is the space of all possible configurations of the system.
 
 ### Collision Detection
 Polygonal obstacles are convenient to work with because they provide an explicit description of the configuration space obstacles.
@@ -67,9 +67,9 @@ Deciding whether the robot and the obstacle intersect is now a matter of determi
 Triangles are convex polygons. Thus, we can test whether two triangles intersect by checking all of the sides on both triangles and testing whether that side acts as a separating line where all of the points from one triangle lie on one side and all those from the other lie on the opposite side.
 
 ### Assignment
-In this assignment I developed a program to help guide the two link robot arm from one configuration to another while avoiding the objects in the workspace. In this example the configuration of the robot is captured by the two joint angles, θ1 and θ2. 
+In this assignment, I developed a program to help guide the two-link robot arm from one configuration to another while avoiding the objects in the workspace. In this example, the configuration of the robot is captured by the two joint angles, θ1 and θ2. 
 
-This assignment splits into two parts: Triangle Intersection and Dijkstra on a Torus. 
+This assignment is split into two parts: Triangle Intersection and Dijkstra on a Torus. 
 
 <div align="center">
   
@@ -98,22 +98,22 @@ This assignment splits into two parts: Triangle Intersection and Dijkstra on a T
 
 ## `WEEK 3`&nbsp; Sample-Based Motion Planners
 
-The main idea is to avoid the explicit construction of object in configuration space, and instead conduct a search that probes the C-space with a sampling scheme. This probing is enabled by a collision detection module. This enables the development of planning algorithms that are independent of the particular geometric models.
+The main idea is to avoid the explicit construction of objects in configuration space, and instead conduct a search that probes the C-space with a sampling scheme. This probing is enabled by a collision detection module. This enables the development of planning algorithms that are independent of the particular geometric models.
 
 ### Probabilistic Road Map
 
-The basic PRM algorithm first constructs a roadmap in a probabilistic way for a given workspace. The roadmap is represented by an undirected graph in which, the nodes are a set of robot configurations chosen by some method over free configuration space. Assume that the generation of configurations is done randomly from a uniform distribution. An edge corresponds to a collision-free path connecting configurations q1 and q2. These paths, which are computed by a local planner. In its simplest form, the local
-planner connects two configurations by the straight line in free space if such a line exists.
+The basic PRM algorithm first constructs a roadmap in a probabilistic way for a given workspace. The roadmap is represented by an undirected graph in which, the nodes are a set of robot configurations chosen by some method over free configuration space. Assume that the generation of configurations is done randomly from a uniform distribution. An edge corresponds to a collision-free path connecting configurations q1 and q2. A local planner computes these paths. In its simplest form, the local
+planner connects two configurations by a straight line in free space if such a line exists.
 
-A significant advantage of PRM based planners is that they can be applied to systems with lots of degrees of freedom. 
+A significant advantage of PRM-based planners is that they can be applied to systems with lots of degrees of freedom. 
 
-It is also important to note that while these methods work well in practice, they are not strictly speaking complete. A complete path planning algorithm should be able to find a path if one exists and indicate failure if there isn't. With the PRM procedure, there can be situations where the algorithm fails to find a path even when one exists. This can happen if the sampling procedure doesn't generate the right set of samples.
+It is also important to note that while these methods work well in practice, they are not strictly complete. A complete path planning algorithm should be able to find a path if one exists and indicate failure if there isn't. With the PRM procedure, there can be situations where the algorithm fails to find a path even when one exists. This can happen if the sampling procedure doesn't generate the right set of samples.
 
 ### Rapidly-Exploring Random Trees
-It is an incremental sampling and searching approach that yields good performance in practice without any parameter tuning. The idea is to incrementally construct a search tree that gradually improves the resolution but does not need to explicitly set any resolution parameters. In the limit, the tree densely covers the space. Thus, it has properties similar to space filling curves, but instead of one long path, there are shorter paths that are organized into a tree. A dense sequence of samples is used as a guide in the incremental construction of the tree. If this sequence is random, the resulting tree is called a rapidly exploring random tree (RRT).
+It is an incremental sampling and searching approach that performs well in practice without any parameter tuning. The idea is to incrementally construct a search tree that gradually improves the resolution but does not need to explicitly set any resolution parameters. In the limit, the tree densely covers the space. Thus, it has properties similar to space-filling curves, but instead of one long path, there are shorter paths that are organized into a tree. A dense sequence of samples is used as a guide in the incremental construction of the tree. If this sequence is random, the resulting tree is called a rapidly exploring random tree (RRT).
 
 ### Assignment
-In this assignment I developed a program to help guide the six link robot from one configuration to another while avoiding the objects in the workspace. The robot is comprised of six revolute links and its configuration can be specified with a vector (θ1; θ2; θ3; θ4; θ5; θ6) where each entry is an angle in degrees between 0 and 360. This code uses Probabilistic Roadmap planner that guides the robot safely from one point to another.
+In this assignment, I developed a program to help guide the six-link robot from one configuration to another while avoiding the objects in the workspace. The robot is comprised of six revolute links and its configuration can be specified with a vector (θ1; θ2; θ3; θ4; θ5; θ6) where each entry is an angle in degrees between 0 and 360. This code uses a Probabilistic Roadmap planner that guides the robot safely from one point to another.
 
 <div align="center">
   
@@ -127,10 +127,12 @@ In this assignment I developed a program to help guide the six link robot from o
 ## `WEEK 4`&nbsp; Artificial Potential Fields
 The planning methods described in the previous sections aim at capturing the global connectivity of the robot's free space into a condensed graph that is subsequently searched for a path. It treats the robot represented as a point in configuration space as a particle under the influence of an artificial potential field whose local variations are expected to reflect the "structure" of the free space. The potential function is typically (but not necessarily) defined over free space as the sum of an attractive potential pulling the robot toward the goal configuration and a repulsive potential pushing the robot away from the obstacles. 
 
-Motion planning is performed in an iterative fashion. At each iteration, the artificial force being the gradient of the potential field, at the current configuration is regarded as the most promising direction of motion, and path generation proceeds along this direction by some increment.
+Motion planning is performed iteratively. At each iteration, the artificial force which is the potential field gradient, is regarded as the most promising direction of motion at the current configuration, and path generation proceeds along this direction by some increment.
 
 ### Assignment
-In this assignment I developed code to guide a robot from one location to another in a 2-dimensional configuration space using artificial potential fields.
+In this assignment, I developed code to guide a robot from one location to another in a 2-dimensional configuration space using artificial potential fields.
+
+<div align="center">
 
 | <img src=".\Figures\WEEK4\configuration-space.jpg" alt="cspace-potential-field" width="500"/> |
 |:--:|
@@ -144,6 +146,7 @@ In this assignment I developed code to guide a robot from one location to anothe
 |:--:|
 | Quiver Plot; a Gradient-Based Trajectory |
 
+</div>
 
 ## Resources
 If you are interested in the topic of computational motion planning in robotics, here are some related texts:
